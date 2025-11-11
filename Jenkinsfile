@@ -108,6 +108,8 @@ pipeline {
                             git config --global user.email "jenkins@brdsoft.com"
 
                             git config --global user.name "Jenkins"
+                            
+                            git remote set-url origin git@github.com:BrunoGsouza90/laravel_jenkins.git
 
                             git checkout main
 
