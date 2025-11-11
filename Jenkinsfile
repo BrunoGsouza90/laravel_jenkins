@@ -111,6 +111,8 @@ pipeline {
                             
                             git remote set-url origin git@github.com:BrunoGsouza90/laravel_jenkins.git
 
+                            git@github.com:BrunoGsouza90/laravel_jenkins.git
+
                             git checkout main
 
                             git merge ${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
@@ -148,7 +150,7 @@ pipeline {
 
                         for VM in ${VM_1} ${VM_2}; do
 
-                            ssh -o StrictHostKeyChecking=no $VM "
+                            ssh $VM"
 
                                 cd ${DEPLOY_PATH} &&
 
