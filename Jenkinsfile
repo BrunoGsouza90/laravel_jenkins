@@ -3,13 +3,6 @@ pipeline {
     // Definimos o Agente padrão para o Jekins, sendo este configurado para utilizar qualquer nó online.
     agent any
 
-    // Ativamos o WebHook para GitHub.
-    triggers {
-
-        githubPush()
-
-    }
-
     // Setamos as Variáveis de Ambiente que serão utilizadas durante o processo.
     environment {
 
@@ -24,6 +17,9 @@ pipeline {
 
         // Definimos a Variável de Ambiente para o NodeJS.
         PATH = "/home/bruno/.nvm/versions/node/v24.3.0/bin:$PATH"
+
+        // Definimos a Variável de Ambiente para a Branch solicitante.
+        BRANCH_NAME = "${env.GIT_BRANCH}"
 
     }
 
@@ -112,8 +108,6 @@ pipeline {
                             git config --global user.email "jenkins@brdsoft.com"
 
                             git config --global user.name "Jenkins"
-
-                            BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
                             git checkout main
 
