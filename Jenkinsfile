@@ -148,7 +148,7 @@ pipeline {
 
                         for VM in ${VM_1} ${VM_2}; do
 
-                            ssh -o StrictHostKeyChecking=no $VM "
+                            ssh $VM"
 
                                 cd ${DEPLOY_PATH} &&
 
