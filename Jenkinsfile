@@ -6,14 +6,17 @@ pipeline {
     // Setamos as Variáveis de Ambiente que serão utilizadas durante o processo.
     environment {
 
-        // Definimos a variável de Ambiente do caminho do repositório no servidor.
+        // Definimos a Variável de Ambiente do caminho do repositório no servidor.
         DEPLOY_PATH = "/var/www/html/laravel_jenkins"
 
-        // Definimos a variável de Ambiente para a conexão SSH da primeira VM.
+        // Definimos a Variável de Ambiente para a conexão SSH da primeira VM.
         VM_1 = "bruno@10.255.255.51"
 
-        // Definimos a variável de Ambiente para a conexão SSH da segunda VM.
+        // Definimos a Variável de Ambiente para a conexão SSH da segunda VM.
         VM_2 = "bruno@10.255.255.64"
+
+        // Definimos a Variável de Ambiente para o NodeJS.
+        PATH = "/home/bruno/.nvm/versions/node/v24.3.0/bin:$PATH"
 
     }
 
