@@ -57,7 +57,15 @@ pipeline {
             steps {
 
                 // Executamos o comando de testes do Laravel.
-                sh "php artisan test"
+                sh '''
+
+                    cd ${DEPLOY_PATH}
+
+                    php artisan optimize:clear
+
+                    php artisan test
+
+                '''
 
             }
 
