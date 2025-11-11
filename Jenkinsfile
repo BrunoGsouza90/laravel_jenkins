@@ -111,7 +111,7 @@ pipeline {
 
                             git checkout main
 
-                            git merge origin/${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
+                            git merge ${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
 
                             git push origin main
 
