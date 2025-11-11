@@ -111,8 +111,6 @@ pipeline {
                             
                             git remote set-url origin git@github.com:BrunoGsouza90/laravel_jenkins.git
 
-                            git@github.com:BrunoGsouza90/laravel_jenkins.git
-
                             git checkout main
 
                             git merge ${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
