@@ -106,6 +106,8 @@ pipeline {
 
                             git config --global user.name "Jenkins"
 
+                            BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
                             git checkout main
 
                             git merge origin/${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
