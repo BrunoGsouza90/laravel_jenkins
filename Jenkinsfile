@@ -3,6 +3,13 @@ pipeline {
     // Definimos o Agente padrão para o Jekins, sendo este configurado para utilizar qualquer nó online.
     agent any
 
+    // Ativamos o WebHook para GitHub.
+    triggers {
+
+        githubPush()
+
+    }
+
     // Setamos as Variáveis de Ambiente que serão utilizadas durante o processo.
     environment {
 
