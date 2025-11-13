@@ -111,7 +111,7 @@ pipeline {
 
                             git remote set-url origin git@github.com:BrunoGsouza90/laravel_jenkins.git
 
-                            git fetch origin
+                            git fetch origin ${FEATURE_BRANCH}
 
                             git checkout main -f
 
