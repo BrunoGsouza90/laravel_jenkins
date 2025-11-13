@@ -19,7 +19,7 @@ pipeline {
         PATH = "/home/bruno/.nvm/versions/node/v24.3.0/bin:$PATH"
 
         // Definimos a Variável de Ambiente para a Branch solicitante.
-        BRANCH_NAME = "${env.GIT_BRANCH}"
+        FEATURE_BRANCH = "${env.GIT_BRANCH.replace('origin/', '')}"
 
     }
 
@@ -117,7 +117,7 @@ pipeline {
 
                             git reset --hard origin/main  # força a main local igual à remota
 
-                            git merge ${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
+                            git merge origin/${FEATURE_BRANCH} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
                             
                             git push origin main
 
