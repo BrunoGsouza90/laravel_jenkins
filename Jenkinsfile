@@ -111,13 +111,15 @@ pipeline {
 
                             git remote set-url origin git@github.com:BrunoGsouza90/laravel_jenkins.git
 
-                            git fetch origin
+                            git fetch origin ${FEATURE_BRANCH}
 
                             git checkout main -f
 
                             git reset --hard origin/main
 
                             git merge origin/${FEATURE_BRANCH} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
+
+                            echo "A branch é: ${FEATURE_BRANCH}"
                             
                             git push origin main -f
 
