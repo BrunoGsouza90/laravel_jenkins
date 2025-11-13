@@ -137,7 +137,11 @@ pipeline {
             // Quando ouver modificações na Branch remota "main".
             when {
 
-                branch "main"
+                expression {
+
+                    env.GIT_BRANCH == "origin/main"
+
+                }
 
             }
 
@@ -147,7 +151,7 @@ pipeline {
                 sshagent(['vm-ssh-key']) {
 
                     sh """
-                    
+
                         for VM in ${VM_1} ${VM_2}; do
                             ssh -o StrictHostKeyChecking=no "\$VM" '
                                 cd ${DEPLOY_PATH} &&
