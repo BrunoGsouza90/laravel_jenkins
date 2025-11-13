@@ -125,8 +125,6 @@ pipeline {
                             
                             git push origin main -f
 
-                            git pull origin main
-
                         '''
 
                 }
