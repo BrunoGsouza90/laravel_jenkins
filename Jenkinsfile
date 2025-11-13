@@ -44,8 +44,6 @@ pipeline {
 
             steps {
 
-                sh 'printenv'
-
                 // Realizamos a instalação das dependências do PHP Composer.
                 sh "composer install --no-interaction --prefer-dist --optimize-autoloader"
 
@@ -146,35 +144,21 @@ pipeline {
             steps {
 
                 // Cadastramos a Chave SSH do GitHub apartir da Credêncial Cadastrada no Jenkins; Realizamos um "for" em ambas as VMs.
-                sshagent([
-                    
-                        "vm-ssh-key"
-                    
-                    ]) {
+                sshagent(['vm-ssh-key']) {
 
-                    sh '''
-
+                    sh """
+                    
                         for VM in ${VM_1} ${VM_2}; do
-
-                            ssh $VM"
-
+                            ssh -o StrictHostKeyChecking=no "\$VM" '
                                 cd ${DEPLOY_PATH} &&
-
                                 git pull origin main &&
-
                                 composer install --no-interaction --prefer-dist --optimize-autoloader &&
-
                                 php artisan migrate --force &&
-
                                 php artisan cache:clear &&
-
                                 php artisan config:cache
-
-                            "
-
+                            '
                         done
-
-                    '''
+                    """
                 }
 
             }
