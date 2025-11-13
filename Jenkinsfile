@@ -118,6 +118,8 @@ pipeline {
                             git reset --hard origin/main
 
                             git merge origin/${FEATURE_BRANCH} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
+
+                            echo "A branch é: ${FEATURE_BRANCH}"
                             
                             git push origin main -f
 
