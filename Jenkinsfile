@@ -108,13 +108,17 @@ pipeline {
                             git config --global user.email "jenkins@brdsoft.com"
 
                             git config --global user.name "Jenkins"
-                            
+
                             git remote set-url origin git@github.com:BrunoGsouza90/laravel_jenkins.git
+
+                            git fetch origin
 
                             git checkout main
 
-                            git merge ${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
+                            git reset --hard origin/main  # força a main local igual à remota
 
+                            git merge origin/${BRANCH_NAME} --no-ff -m "Merge automático da branch ${BRANCH_NAME}"
+                            
                             git push origin main
 
                         '''
