@@ -119,7 +119,7 @@ pipeline {
 
                             git merge origin/${FEATURE_BRANCH} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
                             
-                            git push origin main
+                            git push origin main -f
 
                         '''
 
