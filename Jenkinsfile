@@ -44,6 +44,8 @@ pipeline {
 
             steps {
 
+                sh 'printenv'
+
                 // Realizamos a instalação das dependências do PHP Composer.
                 sh "composer install --no-interaction --prefer-dist --optimize-autoloader"
 
