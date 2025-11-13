@@ -158,14 +158,18 @@ pipeline {
                             
                                 cd ${DEPLOY_PATH} &&
 
-                                git pull origin main &&
+                                git fetch origin main &&
+
+                                git reset --hard origin/main &&
+
+                                git clean -fd &&
 
                                 composer install --no-interaction --prefer-dist --optimize-autoloader &&
 
                                 php artisan migrate --force &&
 
                                 php artisan cache:clear &&
-
+                                
                                 php artisan config:cache
 
                             "
