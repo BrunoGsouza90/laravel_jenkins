@@ -119,9 +119,9 @@ pipeline {
 
                             git reset --hard origin/main
 
-                            git merge origin/${env.GIT_BRANCH.replace('origin/', '')} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
+                            git merge origin/${FEATURE_BRANCH} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
 
-                            echo "A branch é: ${env.GIT_BRANCH.replace('origin/', '')}"
+                            echo "A branch é: ${FEATURE_BRANCH}"
                             
                             git push origin main -f
 
