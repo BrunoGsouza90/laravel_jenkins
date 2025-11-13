@@ -145,28 +145,32 @@ pipeline {
             steps {
 
                 // Cadastramos a Chave SSH do GitHub apartir da Credêncial Cadastrada no Jenkins; Realizamos um "for" em ambas as VMs.
-                sshagent(["vm-ssh-key"]) {
+                sshagent(['vm-ssh-key']) {
 
-                    ssh -o StrictHostKeyChecking=no "${VM_1}" "
+                    sh """
 
-                        cd ${DEPLOY_PATH} &&
+                        ssh -o StrictHostKeyChecking=no "${VM_1}" '
 
-                        git fetch origin main &&
+                            cd ${DEPLOY_PATH} &&
 
-                        git reset --hard origin/main &&
+                            git fetch origin main &&
 
-                        git clean -fd &&
+                            git reset --hard origin/main &&
 
-                        composer install --no-interaction --prefer-dist --optimize-autoloader &&
+                            git clean -fd &&
 
-                        php artisan migrate --force &&
+                            composer install --no-interaction --prefer-dist --optimize-autoloader &&
 
-                        php artisan cache:clear &&
+                            php artisan migrate --force &&
 
-                        php artisan config:cache
-                        
-                    "
+                            php artisan cache:clear &&
 
+                            php artisan config:cache
+
+                        '
+
+                    """
+                    
                 }
 
             }
