@@ -12,9 +12,6 @@ pipeline {
         // Definimos a Variável de Ambiente para a conexão SSH da primeira VM.
         VM_1 = "bruno@10.255.255.51"
 
-        // Definimos a Variável de Ambiente para a conexão SSH da segunda VM.
-        VM_2 = "bruno@10.255.255.64"
-
         // Definimos a Variável de Ambiente para o NodeJS.
         PATH = "/home/bruno/.nvm/versions/node/v24.3.0/bin:$PATH"
 
@@ -148,36 +145,32 @@ pipeline {
             steps {
 
                 // Cadastramos a Chave SSH do GitHub apartir da Credêncial Cadastrada no Jenkins; Realizamos um "for" em ambas as VMs.
-                sshagent(["vm-ssh-key"]) {
+                sshagent(['vm-ssh-key']) {
 
                     sh """
 
-                        for VM in ${VM_1} ${VM_2}; do
+                        ssh -o StrictHostKeyChecking=no "${VM_1}" '
 
-                            ssh -o StrictHostKeyChecking=no "\$VM" "
-                            
-                                cd ${DEPLOY_PATH} &&
+                            cd ${DEPLOY_PATH} &&
 
-                                git fetch origin main &&
+                            git fetch origin main &&
 
-                                git reset --hard origin/main &&
+                            git reset --hard origin/main &&
 
-                                git clean -fd &&
+                            git clean -fd &&
 
-                                composer install --no-interaction --prefer-dist --optimize-autoloader &&
+                            composer install --no-interaction --prefer-dist --optimize-autoloader &&
 
-                                php artisan migrate --force &&
+                            php artisan migrate --force &&
 
-                                php artisan cache:clear &&
-                                
-                                php artisan config:cache
+                            php artisan cache:clear &&
 
-                            "
-                            
-                        done
+                            php artisan config:cache
+
+                        '
 
                     """
-
+                    
                 }
 
             }
