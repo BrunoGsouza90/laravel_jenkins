@@ -113,9 +113,9 @@ pipeline {
 
                             git fetch origin
 
-                            git checkout main
+                            git checkout main -f
 
-                            git reset --hard origin/main  # força a main local igual à remota
+                            git reset --hard origin/main
 
                             git merge origin/${FEATURE_BRANCH} --no-ff -m "Merge automático da branch ${FEATURE_BRANCH}"
                             
