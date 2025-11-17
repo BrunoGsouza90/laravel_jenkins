@@ -1,4 +1,4 @@
-    pipeline {
+        pipeline {
 
         // Definimos o Agente padrão para o Jekins, sendo este configurado para utilizar qualquer nó online.
         agent any
@@ -21,7 +21,7 @@
         }
 
         // Abrimos o Bloco aonde serão configuradas as etapas.
-        stages {
+        stages {    
 
             // Primeira Etapa: Fazer o checkout da Branch solicitante.
             stage("Fazer o Checkout da Branch") {
@@ -163,9 +163,7 @@
 
                                 php artisan migrate --force &&
 
-                                php artisan cache:clear &&
-
-                                php artisan config:cache
+                                php artisan optimize:clear
 
                             '
 
